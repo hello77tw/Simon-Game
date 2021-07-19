@@ -18,18 +18,18 @@ function startOver(){
 }
 
 function checkAnswer(){
-  for(i=0;i<userClickedPattern.length;i++){
-    if(userClickedPattern[i]!==gamePattern[i]){
-      return false;
-    }
+  var currentIndex = userClickedPattern.length-1;
+  if(userClickedPattern[currentIndex]!==gamePattern[currentIndex]){
+    return false;
   }
+
   return true;
 }
 
 function nextSequence(){
   randomNumber = Math.floor(Math.random()*4);
   var randomChosenColour = buttonColours[randomNumber];
-  $("#"+randomChosenColour).fadeOut(50).fadeIn(50);
+  animatePress(randomChosenColour);
   playSound(randomChosenColour);
   gamePattern.push(randomChosenColour);
   level++;
@@ -67,7 +67,7 @@ $(".button").click(function(){
       setTimeout(function(){
         $("body").removeClass();
       },200);
-      $("h1").text("Game Over, good job Kimia you got level "+level+" ,press start key to restart.");
+      $("h1").text("Game Over, good job Kimia you got level "+level+".");
       startOver();
     }
   }
